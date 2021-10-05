@@ -1,5 +1,9 @@
 import RedisStreamHelper from "redis-stream-helper"
-import { enrichStandardFields } from "atom-helper"
+import { Piscina } from "piscina"
+
+const piscina = new Piscina({
+  filename: new URL("./worker.mjs", import.meta.url).href,
+})
 
 const { listenForMessages, createStreamGroup, addStreamData, addListener } =
   RedisStreamHelper(process.env.REDIS_PORT, process.env.REDIS_HOST)
@@ -10,8 +14,7 @@ addListener("atom:db:trigger")
 
 const run = async () => {
   await listenForMessages(async (key, streamId, data) => {
-    enrichStandardFields("db", data, addStreamData)
-    console.log("db executed with data", key, streamId, data)
+    await piscina.run({ key, streamId, data })
   })
   run()
 }
