@@ -1,0 +1,27 @@
+{
+  "name": "atom-db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "start:dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thelinuxlich/atom-db.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thelinuxlich/atom-db/issues"
+  },
+  "homepage": "https://github.com/thelinuxlich/atom-db#readme",
+  "dependencies": {
+    "ioredis": "^4.27.9",
+    "nodemon": "^2.0.12",
+    "redis-stream-helper": "thelinuxlich/redis-stream-helper"
+  }
+}
